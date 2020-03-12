@@ -1,0 +1,32 @@
+class Solution {
+    func strStr(_ haystack: String, _ needle: String) -> Int {
+        if needle == "" {
+            return 0
+        }
+        if haystack == "" || needle.count > haystack.count{
+            return -1
+        }
+
+        if haystack.count == needle.count {
+            return haystack == needle ? 0 : -1
+        }
+        var str = ""
+        var time = 0
+        for i in haystack {
+            print(str + needle)
+            if(str.count + needle.count == haystack.count && str + needle != haystack) {
+                return -1
+            }
+            if (haystack == str + needle) {
+                return time
+            }
+            if str + needle + String(haystack[haystack.index(haystack.startIndex, offsetBy: str.count + needle.count)...haystack.index(haystack.startIndex, offsetBy:haystack.count - 1)]) == haystack {
+                return time
+            }
+            str += String(i) 
+            time += 1
+        }
+        return -1
+    }
+}
+
