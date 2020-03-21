@@ -6,7 +6,6 @@ class Solution {
         
         var array = A.sorted(by: <)
         var count: Int = 0
-        
         for i in 0...array.count - 2 {
             if array[i] >= array[i + 1] {
                 count += array[i] - array[i + 1] + 1
