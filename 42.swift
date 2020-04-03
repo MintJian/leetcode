@@ -1,31 +1,32 @@
 class Solution {
     func trap(_ height: [Int]) -> Int {
-        if height == [] || height.count == 1 {
+        if height.isEmpty || height.count == 1 || height.count == 2 {
             return 0
         }
         
-        var pointA:Int = 0, pointB:Int = height.count - 1
-        var leftMax:Int = 0, rightMax:Int = 0
-        var result:Int = 0
+        var leftMax: Int = height.first ?? 0
+        var rightMax: Int = height.last ?? 0
+        var nowValue: Int = 0
+        var leftNow: Int = 0
+        var rightNow: Int = height.count - 1
         
-        while pointA <= pointB {
-            if leftMax < rightMax {
-                if height[pointA] >= leftMax {
-                    leftMax = height[pointA]
+        while leftNow < rightNow {
+            if leftMax > rightMax {
+                rightNow -= 1
+                if height[rightNow] > rightMax {
+                    rightMax = height[rightNow]
                 } else {
-                    result += leftMax - height[pointA]
+                    nowValue += rightMax - height[rightNow]
                 }
-                pointA += 1
             } else {
-                if height[pointB] >= rightMax {
-                    rightMax = height[pointB]
+                leftNow += 1
+                if height[leftNow] > leftMax {
+                    leftMax = height[leftNow]
                 } else {
-                    result += rightMax - height[pointB]
+                    nowValue += leftMax - height[leftNow]
                 }
-                pointB -= 1
             }
         }
-        return result
+        return nowValue
     }
 }
-
