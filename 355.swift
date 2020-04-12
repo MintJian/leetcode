@@ -75,6 +75,9 @@ class Twitter {
         if userDictionary[followerId] == nil{
             userDictionary.updateValue(User.init(userId: followerId), forKey: followerId)
         }
+        if followeeId == followerId {
+            return
+        }
         if userDictionary[followeeId] == nil {
             userDictionary.updateValue(User.init(userId: followeeId), forKey: followeeId)
         }
@@ -85,6 +88,9 @@ class Twitter {
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
     func unfollow(_ followerId: Int, _ followeeId: Int) {
         guard userDictionary[followerId] != nil && userDictionary[followeeId] != nil else {
+            return
+        }
+        if followeeId == followerId {
             return
         }
         
