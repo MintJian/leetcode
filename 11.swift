@@ -1,27 +1,23 @@
 class Solution {
     func maxArea(_ height: [Int]) -> Int {
-        var pointA:Int = 0, pointB:Int = height.count - 1
-        var leftMax:Int = height.first!
-        var rightMax:Int = height.last!
-        var maxArea:Int = min(leftMax, rightMax) * (pointB - pointA)
+        var leftPoint:Int = 0
+        var rightPoint:Int = height.count - 1
+        var leftMax = height[0]
+        var rightMax = height[height.count - 1]
+        var maxVolume:Int = min(leftMax, rightMax) * (rightPoint - leftPoint)
         
-        while pointA < pointB {
+        while leftPoint != rightPoint {
             if leftMax > rightMax {
-                pointB -= 1
-                if height[pointB] > rightMax {
-                    rightMax = height[pointB]
-                    maxArea = max(maxArea, min(leftMax, rightMax) * (pointB - pointA))
-                }
+                rightPoint -= 1
+                rightMax = max(rightMax, height[rightPoint])
+                maxVolume = max(maxVolume, min(leftMax, rightMax) * (rightPoint - leftPoint))
             } else {
-                pointA += 1
-                if height[pointA] > leftMax {
-                    leftMax = height[pointA]
-                    maxArea = max(maxArea, min(leftMax, rightMax) * (pointB - pointA ))
-                }
+                leftPoint += 1
+                leftMax = max(leftMax, height[leftPoint])
+                maxVolume = max(maxVolume, min(leftMax, rightMax) * (rightPoint - leftPoint))
             }
         }
         
-        return maxArea
+        return maxVolume
     }
 }
-
