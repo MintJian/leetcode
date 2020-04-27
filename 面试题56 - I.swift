@@ -5,7 +5,6 @@ class Solution {
         for i in nums {
             ret ^= i
         }
-        
         while div & ret == 0 {
             div <<= 1
         }
@@ -18,7 +17,7 @@ class Solution {
             }
         }
         
-        return[a, b]
+        return [a, b]
     }
 }
 
