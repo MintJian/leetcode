@@ -63,3 +63,75 @@ class Solution {
         return -1
     }
 }
+
+/*
+class Solution {
+    func search(_ nums: [Int], _ target: Int) -> Int {
+        if nums.isEmpty { return -1 }
+        searchValue = target
+        doSearch(array: nums, start: 0, end: nums.count - 1)
+        return place
+    }
+    
+    var searchValue = -1
+    var place = -1
+    
+    func doSearch(array: [Int], start:Int, end: Int) {
+        if start == end - 1 {
+            if array[start] != searchValue && array[end] != searchValue {
+                return
+            } else {
+                if array[start] == searchValue {
+                    place = start
+                    return
+                } else {
+                    place = end
+                    return
+                }
+            }
+        } else if start == end {
+            if array[start] != searchValue {
+                return
+            } else {
+                place = start
+                return
+            }
+        }
+        
+        let mid = (start + end) / 2
+        
+        let startValue = array[start]
+        let midValue = array[mid]
+        
+        if place > -1 {
+            return
+        }
+        if midValue == searchValue {
+            place = mid
+            return
+        } else if midValue > startValue {
+            if midValue > searchValue {
+                if startValue > searchValue {
+                    doSearch(array: array, start: mid + 1, end: end)
+                } else {
+                    doSearch(array: array, start: start, end: mid)
+                }
+            } else {
+                    doSearch(array: array, start: mid + 1, end: end)
+            }
+        } else {
+            if midValue > searchValue {
+                    doSearch(array: array, start: start, end: mid)
+            } else {
+                if startValue > searchValue {
+                    doSearch(array: array, start: mid + 1, end: end)
+                } else {
+                    doSearch(array: array, start: start, end: mid)
+                }
+            }
+        }
+        
+    }
+}
+
+*/
