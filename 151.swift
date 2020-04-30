@@ -23,3 +23,20 @@ class Solution {
         return finalString
     }
 }
+
+//more fast
+class Solution {
+    func reverseWords(_ s: String) -> String {
+        if s == "" { return "" }
+        var wordArray = s.split(separator: " ")
+        if wordArray.isEmpty { return "" }
+        
+        for i in 0..<wordArray.count / 2 {
+            wordArray.swapAt(i, wordArray.count - 1 - i)
+        }
+        
+        return wordArray.joined(separator: " ")
+    }
+}
+
+
