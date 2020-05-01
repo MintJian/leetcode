@@ -1,3 +1,51 @@
+//2020.5
+class Solution {
+    func maxAreaOfIsland(_ grid: [[Int]]) -> Int {
+        if grid.isEmpty || grid.first!.isEmpty { return 0 }
+        discoverMap = [[Bool]](repeating: [Bool](repeating: false, count: grid[0].count), count: grid.count)
+        gridArray = grid
+        var maxSize = 0
+        
+        for i in 0..<grid.count {
+            for j in 0..<grid.first!.count {
+                if grid[i][j] == 0 { continue }
+                if discoverMap[i][j] == false {
+                    maxSize = max(maxSize, discoverAt(x: i, y: j))
+                }
+            }
+        }
+        
+        return maxSize
+    }
+    
+    var discoverMap = [[Bool]]()
+    var gridArray = [[Int]]()
+    
+    private func discoverAt(x:Int, y:Int) -> Int {
+        discoverMap[x][y] = true
+        if gridArray[x][y] == 0 { return 0 }
+        
+        var size = 0
+        if gridArray[x][y] == 1 {
+            size += 1
+        }
+        if x > 0 && discoverMap[x - 1][y] == false {
+            size += discoverAt(x: x - 1, y: y)
+        }
+        if x < gridArray.count - 1 && discoverMap[x + 1][y] == false {
+            size += discoverAt(x: x + 1, y: y)
+        }
+        if y > 0 && discoverMap[x][y - 1] == false {
+            size += discoverAt(x: x, y: y - 1)
+        }
+        if y < gridArray.first!.count - 1 && discoverMap[x][y + 1] == false {
+            size += discoverAt(x: x, y: y + 1)
+        }
+        
+        return size
+    }
+}
+
 class Solution {
     func maxAreaOfIsland(_ grid: [[Int]]) -> Int {
         if grid == [] {

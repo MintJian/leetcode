@@ -10,6 +10,36 @@
  * }
  */
 
+
+//2020.5
+class Solution {
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        var l1p = l1
+        var l2p = l2
+        let result = ListNode(-1)
+        var tail = result
+        
+        while l1p != nil || l2p != nil {
+            let l1pValue = l1p?.val ?? Int.max
+            let l2pValue = l2p?.val ?? Int.max
+            
+            if l1pValue < l2pValue {
+                tail.next = ListNode(l1pValue)
+                l1p = l1p?.next
+            } else {
+                tail.next = ListNode(l2pValue)
+                l2p = l2p?.next
+            }
+            tail = tail.next!
+        }
+        
+        return result.next
+    }
+}
+
+
+
+//2020.3
 class Solution {
     func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         if l1 == nil || l2 == nil {
