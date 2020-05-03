@@ -1,3 +1,17 @@
+//2020.5
+class Solution {
+    func maxSubArray(_ nums: [Int]) -> Int {
+        if nums.isEmpty { return 0 }
+        var nowMax = nums.first!
+        var finalMax = nums.first!
+        for i in 1..<nums.count {
+            nowMax = max(nums[i], nowMax + nums[i])
+            finalMax = max(nowMax, finalMax)
+        }
+        return finalMax
+    }
+}
+
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
         var array = nums
