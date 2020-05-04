@@ -1,3 +1,29 @@
+//2020.5
+class Solution {
+    func merge(_ intervals: [[Int]]) -> [[Int]] {
+        if intervals.count < 2 { return intervals }
+        let sortedIntervals = intervals.sorted { $0[0] < $1[0] }
+        var merged = [sortedIntervals[0]]
+        
+        for i in 1..<sortedIntervals.count {
+            let nowArray = sortedIntervals[i]
+            let priviousArray = merged[merged.count - 1]
+            if priviousArray[1] >= nowArray[0] {
+                if priviousArray[1] < nowArray[1]{
+                    merged[merged.count - 1][1] = nowArray[1]
+                } else {
+                    continue
+                }
+            } else {
+                merged.append(nowArray)
+            }
+        }
+        
+        return merged
+    }
+}
+
+
 class Solution {
     func merge(_ intervals: [[Int]]) -> [[Int]] {
         if intervals.isEmpty || intervals.count == 1 {
