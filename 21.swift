@@ -1,3 +1,36 @@
+//2020.5.5
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+class Solution {
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        let newList = ListNode(-1)
+        var tail: ListNode? = newList
+        var l1p = l1, l2p = l2
+        
+        while l1p != nil || l2p != nil {
+            if l1p?.val ?? Int.max > l2p?.val ?? Int.max {
+                tail!.next = ListNode(l2p!.val)
+                l2p = l2p!.next
+            } else {
+                tail!.next = ListNode(l1p!.val)
+                l1p = l1p!.next
+            }
+            tail = tail!.next
+        }
+        
+        return newList.next
+    }
+}
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -11,7 +44,7 @@
  */
 
 
-//2020.5
+//2020.5.1
 class Solution {
     func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         var l1p = l1
