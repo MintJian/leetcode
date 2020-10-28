@@ -1,2 +1,2 @@
 # leetcode
-My exercises on leetcode
+My exercises on leetcode.
